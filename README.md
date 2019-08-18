@@ -35,7 +35,7 @@ SoC, написанный в SystemVerilog, основанный на RISC-V, Pr
 
  Структура # SoC
 
-![Image text] (https://github.com/WangXuan95/USTCRVSoC/blob/master/images/SoC.png)
+![Image text](https://github.com/Visual-e/USTCRVSoC/blob/master/images/SoC.png)
 
 На приведенном выше рисунке показана структура SoC, Bus arbitrator * * bus_router * * для Центра SoC, на котором установлены 3 * * основные интерфейсы * * и 5**подчиненные интерфейсы**.Шина, используемая этим SoC, не исходит из какого-либо стандарта (например, AXI или APB Bus), но сама по себе автор, потому что просто называется**naive_bus**.
 
