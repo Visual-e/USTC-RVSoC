@@ -92,7 +92,7 @@ SoC, написанный в SystemVerilog, основанный на RISC-V, Pr
 
 ## Развертывание на Nexys4-DDR
 
-![Image text] (https://github.com/Visual-e/USTC-RVSoC/blob/master/images/nexys4-connection2.png)
+![Image text](https://github.com/Visual-e/USTC-RVSoC/blob/master/images/nexys4-connection2.png)
 
 1. ** Аппаратное соединение**: как показано выше, на плате разработки Nexys4 есть USB-порт, который может использоваться как для записи FPGA, так и для связи UART, нам нужно подключить этот USB-порт к компьютеру.Кроме того, соединение VGA не является обязательным, и вы можете подключить его к экрану.
 2. ** Синтез, запись**: пожалуйста, откройте с Vivado**./оборудование / Vivado / nexys4 / USTCRVSoC-nexys4 / USTCRVSoC-nexys4.xpr**.Синтезировать и записывать на доску разработки.
@@ -100,11 +100,11 @@ SoC, написанный в SystemVerilog, основанный на RISC-V, Pr
 
 ## Развертывание в DE0-Nano
 
-![Image text] (https://github.com/Visual-e/USTC-RVSoC/blob/master/images/DE0-Nano.png)
+![Image text](https://github.com/Visual-e/USTC-RVSoC/blob/master/images/DE0-Nano.png)
 
 1, * * аппаратное соединение**: на плате DE0-Nano нет ни последовательного порта USB, ни VGA-интерфейса.Поэтому необходимы внешние модули, а также некоторые практические навыки и знания оборудования.Мы используем два ряда GPIO на DE0-Nano в качестве контактов для внешнего модуля, а интерфейс имеет смысл, как показано выше.Вам нужен модуль USB-to-UART, который соединяет контакты TX и RX UART, чтобы он мог общаться с компьютером.Соединение VGA является необязательным и должно соответствовать определению контактов VGA на рисунке выше.Эффект последнего соединения показан ниже：
 
-![Image text] (https://github.com/Visual-e/USTC-RVSoC/blob/master/images/connection.png)
+![Image text](https://github.com/Visual-e/USTC-RVSoC/blob/master/images/connection.png)
 
 2, * * синтез, запись**: пожалуйста, откройте с Quartus**./ оборудование / Кварт / DE0_Nano / DE0_Nano.qpf**.Синтезировать и записывать на доску разработки.
 
@@ -159,7 +159,7 @@ SoC, написанный в SystemVerilog, основанный на RISC-V, Pr
 * * * Обновить список портов**: введите "refresh"и нажмите Enter, чтобы обновить список портов.
 * * * Выход**: введите "выход", чтобы выйти
 
-![Image text] (https://github.com/Visual-e/USTC-RVSoC/blob/master/images/UartSession2.png)
+![Image text](https://github.com/Visual-e/USTC-RVSoC/blob/master/images/UartSession2.png)
 
 Скорость передачи по умолчанию составляет 115200, что соответствует нашему SoC и не требует модификации.Найдите порт, соответствующий плате разработки FPGA, непосредственно из списка портов и откройте его.Мы можем видеть, что окно постоянно показывает "привет", просто не может остановиться,как показано выше, что говорит о том, что процессор работает нормально.
 
@@ -170,7 +170,7 @@ SoC, написанный в SystemVerilog, основанный на RISC-V, Pr
 
 Теперь интерфейс постоянно печатает "hello", и мы нажимаем Enter,чтобы увидеть, что другой человек больше не нажимает"hello", и появляется"debug", так что он успешно переходит в режим **DEBUG**.
 
-![Image text] (https://github.com/Visual-e/USTC-RVSoC/blob/master/images/UartSession1.png)
+![Image text](https://github.com/Visual-e/USTC-RVSoC/blob/master/images/UartSession1.png)
 
 Отладчик UART имеет два режима：
 * * * Режим пользователя**: в этом режиме пользователь может получать данные, отправленные CPU через isp_uart.FPGA по умолчанию находится в этом режиме после записи.привет, мы можем видеть только в этом режиме.Перейдя в режим отладки, отправив\n **в uart**, вы можете выскочить из **USER mode**.
@@ -178,7 +178,7 @@ SoC, написанный в SystemVerilog, основанный на RISC-V, Pr
 
 Ниже давайте попробуем функцию отладки * * UART**, введите * * "0"* * и нажмите Enter, вы увидите, что другая сторона отправила 8-разрядную 16-разрядную систему.Это число является данными, считываемыми по адресу 0x00000000 шины SoC, то есть первой инструкцией в * * инструкции ROM**, как показано ниже.
 
-![Image text] (https://github.com/Visual-e/USTC-RVSoC/blob/master/images/UartSession3.png)
+![Image text](https://github.com/Visual-e/USTC-RVSoC/blob/master/images/UartSession3.png)
 
 В дополнение к чтению мы также можем написать шину с отладчиком, введя команду записи: "10000 abcd1234" и нажав Enter, мы увидим, что другая сторона отправила * *" wr done"**, что означает успешную запись, команда означает запись 0xabcd1234 на адрес 0x10000 (0x10000-это первый адрес ОЗУ данных).
 
@@ -213,7 +213,7 @@ SoC, написанный в SystemVerilog, основанный на RISC-V, Pr
 
 В режиме**DEBUG * * отправьте команду записи： **"20000 31323334"** ，вы можете видеть, что первая строка появляется**4321** и так далее.Это связано с тем, что начальный адрес ОЗУ для видеопамяти равен 0x20000, а отладчик UART записывает 0x34, 0x33, 0x32, 0x31 в первые 4 байта, то есть**4321**код ASCII.
 
-![Image text] (https://github.com/Visual-e/USTC-RVSoC/blob/master/images/vga_show.png)
+![Image text](https://github.com/Visual-e/USTC-RVSoC/blob/master/images/vga_show.png)
 
 ОЗУ памяти составляет 4096 байт, разделенных на 32 блока, которые соответствуют 32 строкам на экране; каждый блок 128B, первые 86 байтов соответствуют первым 86-символьным ASCII-кодам в этой строке.Последние 128-86 байт не отображаются на экране.
 
@@ -239,7 +239,7 @@ SoC, написанный в SystemVerilog, основанный на RISC-V, Pr
 
 > * * USTCRVSoC-tool * * написан на C#, инженерный путь VisualStudio ./ USTCRVSoC-tool-VS2012
 
-![Image text] (https://github.com/Visual-e/USTC-RVSoC/blob/master/images/USTCRVSoC-tool-image.png)
+![Image text](https://github.com/Visual-e/USTC-RVSoC/blob/master/images/USTCRVSoC-tool-image.png)
 
 Теперь попробуйте заставить SoC запустить программу для быстрой сортировки вычислений.Шаги：
 1. ** Откройте USTCRVSoC-инструмент.<url> не удалось найти**
