@@ -41,21 +41,21 @@ core_top core_top_inst(
     .data_master       ( bus_masters[1] )
 );
 
-// 指令ROM
+// ROM Инструкций
 instr_rom instr_rom_inst(
     .clk               ( clk            ),
     .rst_n             ( rst_n          ),
     .bus               ( bus_slaves[0]  )
 );
 
-// 指令RAM
+// RAM Инструкций
 ram_bus_wrapper instr_ram_inst(
     .clk               ( clk            ),
     .rst_n             ( rst_n          ),
     .bus               ( bus_slaves[1]  )
 );
 
-// 数据RAM
+// RAM Данных
 ram_bus_wrapper data_ram_inst(
     .clk               ( clk            ),
     .rst_n             ( rst_n          ),
@@ -63,7 +63,7 @@ ram_bus_wrapper data_ram_inst(
 );
 
 
-// 显存 
+// Память VGA 
 video_ram  #(
     .VGA_CLK_DIV       ( VGA_CLK_DIV    )
 )video_ram_inst(
@@ -78,19 +78,19 @@ video_ram  #(
 );
 
 
-// 3��?5从�?�线仲裁��?
+// 3 ? 5 from the line arbitration?
 //
-// 主（越靠前优先级越高）：
-//   0. UART Debugger?
-//   1. Core Data Master
-//   2. Core Instruction  Master
+// Lord (the higher the priority, the higher the priority):
+// 0. UART Debugger?
+// 1. Core Data Master
+// 2. Core Instruction Master
 //
-// 从：
-//   1. 指令ROM��? 地址空间 00000000~00000fff
-//   2. 指令RAM��? 地址空间 00008000~00008fff
-//   3. 数据RAM��? 地址空间 00010000~00010fff
-//   4. 显存RAM��? 地址空间 00020000~00020fff
-//   5. 用户UART，   地址空间 00030000~00030003
+// From:
+// 1. Instruction ROM? Address space 00000000~00000fff
+// 2. Instruction RAM? Address space 00008000~00008fff
+// 3. Data RAM ? Address space 00010000~00010fff
+// 4. Memory RAM? Address space 00020000~00020fff
+// 5. User UART, address space 00030000~00030003
 naive_bus_router #(
     .N_MASTER          ( 3 ),
     .N_SLAVE           ( 5 ),

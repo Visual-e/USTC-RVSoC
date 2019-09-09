@@ -142,9 +142,9 @@ always @ (posedge clk)
         
 always @ (posedge clk)
     if(uart_tx_line_fin && (send_type == RST || send_type == SELOPEN) )
-        isp_user_sel <= 1'b0;     // 切换到USER模式
+        isp_user_sel <= 1'b0;     // Switch to USER mode
     else if(rx_ready && `E )
-        isp_user_sel <= 1'b1;     // 切换到DEBUG模式
+        isp_user_sel <= 1'b1;     // Switch to DEBUG mode
 
 always @ (posedge clk)
     if         (bus.rd_req) begin
@@ -178,14 +178,14 @@ always @ (posedge clk)
                         fsm <= TRASH;
                     end
         CMD       : if         (`E) begin
-                        o_boot_addr <= {wr_data[31:2],2'b00};   // 设置复位的boot地址，后两位截断(双字对齐)
+                        o_boot_addr <= {wr_data[31:2],2'b00};   // Set the reset boot address, the last two truncation (double word alignment)
                         fsm <= NEW;  // cmd ok!
                         addr <= 0;
                         wr_data <= 0;
                     end else if(`S) begin
                         fsm <= CMD;
                     end else if(`N) begin
-                        fsm <= CMD;        // r字符后出现数字，说明该复位命令要指定boot地址�?
+                        fsm <= CMD;        // A number appears after the r character, indicating that the reset command specifies the boot address.
                         wr_data <= {wr_data[27:0], rx_binary_l};  // get a data
                     end else        begin
                         fsm <= TRASH;

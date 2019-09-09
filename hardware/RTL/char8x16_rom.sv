@@ -1,12 +1,12 @@
 //
-// 存放所有 ASCII 字符的字码
-// 该ROM自动综合成Block RAM
-// 每个字符为8*16个像素，8列16行
-// 机制：每次读取时需要输入一个 7bit ASCII 值和一个 4bit 行号，共同组成12bit地址
-// ASCII值表示想要读取的字符的ASCII码
-// 4bit行号的取值范围是0~15，指定了想要读取该字符的哪一行像素。
-// 输出8bit，即该字符这一行的8个像素。0代表黑色，1代表白色（黑底白字）
-// 因此该模块只是一个普通的8bit数据总线，12bit地址总线的ROM而已
+// store the code of all ASCII characters
+// The ROM is automatically integrated into Block RAM
+// Each character is 8*16 pixels, 8 columns and 16 rows
+// Mechanism: Each read requires a 7bit ASCII value and a 4bit line number to form a 12bit address.
+// ASCII value indicates the ASCII code of the character you want to read
+// The 4-bit line number ranges from 0 to 15, specifying which row of pixels you want to read.
+// Output 8bit, which is 8 pixels of the character line. 0 for black and 1 for white (white on black)
+// So the module is just a normal 8-bit data bus, the ROM of the 12-bit address bus.
 
 module char8x16_rom(
     input  logic clk,
